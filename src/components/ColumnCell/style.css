@@ -1,0 +1,8 @@
+.column-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 6vh;
+    align-items: center;
+
+}

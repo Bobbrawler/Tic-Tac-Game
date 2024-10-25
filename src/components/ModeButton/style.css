@@ -1,0 +1,32 @@
+.mode-button {
+    width: 12vw;
+    height: 9vh;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 0.6vw;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    margin-bottom: 5vh;
+    padding: 2vh 2vw;
+}
+
+.mode-image {
+    width: 3vw;
+    margin-right: 0.6vw;
+    user-select: none;
+}
+
+.mode-name {
+    font-weight: bold;
+    color: rgb(40, 42, 62);
+    font-family: sans-serif;
+    user-select: none;
+    font-size: 2vw;
+}
+
+.mode-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

@@ -1,0 +1,51 @@
+body {
+    background-color: rgb(40, 42, 62);
+}
+
+
+@font-face {
+    font-family: 'logo-font';
+    src: url('/public/fonts/AbrilFatface-Regular.ttf') format('truetype');
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-logo {
+    font-weight: bold;
+    color: white;
+    font-family: 'logo-font', sans-serif;
+    font-size: 3vw;
+    user-select: none;
+    transition: 2s;
+    margin-bottom: 2vh;
+}
+
+.game-logo:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.modes-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2vw;
+    align-items: center;
+}
+
+.cells-board {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4vh;
+    align-items: center;
+    padding: 4vw 4vw;
+    border-radius: 0.3vw;
+    background-color: rgb(57, 59, 87);
+}

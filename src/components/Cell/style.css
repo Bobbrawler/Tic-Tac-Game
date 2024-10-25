@@ -1,0 +1,54 @@
+.cell-start {
+    background-color: white;
+    border-radius: 0.3vw;
+    width: 8vw;
+    height: 8vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+
+.cell-start:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.cell-win-player-1 {
+    background-color: rgb(246, 134, 30);
+    border-radius: 0.3vw;
+    width: 8vw;
+    height: 8vw;
+    transform: scale(1.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+
+.cell-win-player-1:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+}
+
+.cell-win-player-2 {
+    background-color: rgb(51, 179, 214);
+    border-radius: 0.3vw;
+    width: 8vw;
+    height: 8vw;
+    transform: scale(1.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+
+.cell-win-player-2:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+}
+
+.cell-image {
+    width: 5vw;
+    user-select: none;
+}
