@@ -6,15 +6,24 @@ import { TGame, TCells, IRound } from "../../interfaces";
 import { GameController } from "../GameController";
 import Settings from "../Settings";
 import SettingsButton from "../SettingsButton";
-import { statusListNames, needLineToWin } from "../../utils/constants";
+import PlayerNameField from "../PlayerNameField";
+import {
+    statusListNames,
+    needLineToWin,
+    playersList,
+} from "../../utils/constants";
 import "./style.css";
 
 const App = (): ReactElement => {
-    const [game, updateGame] = useState<TGame>([] as TGame);
-    const [cellsList, updateCellsList] = useState<TCells>([] as TCells);
-    const [winLineId, setWinLineId] = useState<string[]>([]);
     const [rows, setRows] = useState<number>(3);
     const [cols, setCols] = useState<number>(3);
+    const [countPlayers, setCountPlayers] = useState<number>(2);
+    const [game, updateGame] = useState<TGame>([] as TGame);
+    const [cellsList, updateCellsList] = useState<TCells>([] as TCells);
+    const [playersNames, updatePlayersNames] = useState<string[]>(
+        GameController.setStartPlayersNames(countPlayers)
+    );
+    const [winLineId, setWinLineId] = useState<string[]>([]);
     const [settingsStyle, setSettingsStyle] = useState<string>(
         "settings-container-hidden"
     );
@@ -37,7 +46,7 @@ const App = (): ReactElement => {
     const showBadGame = () => {
         let checkList = [...cellsList];
         let isGameEnd = GameController.isGameEnd(checkList);
-        
+
         if (!isGameEnd) {
             return;
         }
@@ -82,7 +91,10 @@ const App = (): ReactElement => {
         );
 
         if (game.length !== 0) {
-            let isBadGame: boolean = game[game.length - 1].badGame;
+            let isBadGame: boolean = GameController.isBadGame(
+                cellsList,
+                checkWin
+            );
             setCheckBadGame(isBadGame);
         }
 
@@ -92,7 +104,13 @@ const App = (): ReactElement => {
 
     return (
         <GameContext.Provider
-            value={{ game, cellsList, updateGame, updateCellsList }}
+            value={{
+                game,
+                cellsList,
+                playersNames,
+                updateGame,
+                updateCellsList,
+            }}
         >
             <Fragment>
                 <div className={mainContainerStyle}>
@@ -114,6 +132,7 @@ const App = (): ReactElement => {
                             setCellsBoardStyle={setCellsBoardStyle}
                             setBadGameContainerStyle={setBadGameContainerStyle}
                             setCheckRestart={setCheckRestart}
+                            playersNames={playersNames}
                         />
                     )}
 
@@ -132,9 +151,20 @@ const App = (): ReactElement => {
                                 rowCells={rowCells}
                                 winLineId={winLineId}
                                 setWinLineId={setWinLineId}
-                                setCheckWin={setCheckWin}
-                                setCheckBadGame={setCheckBadGame}
-                                checkBadGame={checkBadGame}
+                            />
+                        ))}
+                    </div>
+
+                    <div className="players-names-container">
+                        {playersList.map((player) => (
+                            <PlayerNameField
+                                key={player.id}
+                                id={player.id}
+                                icon={player.icon}
+                                color={player.color}
+                                name={playersNames[Number(player.id)]}
+                                playersNames={playersNames}
+                                updatePlayersNames={updatePlayersNames}
                             />
                         ))}
                     </div>
@@ -145,16 +175,16 @@ const App = (): ReactElement => {
                     />
                 </div>
                 <div className="settings-main-container">
-                    <Settings
-                        settingsStyle={settingsStyle}
-                        setSettingsStyle={setSettingsStyle}
-                        setMainContainerStyle={setMainContainerStyle}
-                        setRows={setRows}
-                        setCols={setCols}
-                        rows={rows}
-                        cols={cols}
-                    />
-                </div>
+                        <Settings
+                            settingsStyle={settingsStyle}
+                            setSettingsStyle={setSettingsStyle}
+                            setMainContainerStyle={setMainContainerStyle}
+                            setRows={setRows}
+                            setCols={setCols}
+                            rows={rows}
+                            cols={cols}
+                        />
+                    </div>
             </Fragment>
         </GameContext.Provider>
     );

@@ -10,12 +10,9 @@ export interface ICellProps {
     id: string;
     winLineId: string[];
     setWinLineId: Dispatch<SetStateAction<string[]>>;
-    setCheckWin: Dispatch<SetStateAction<boolean>>;
-    setCheckBadGame: Dispatch<SetStateAction<boolean>>;
-    checkBadGame: boolean;
 }
 
-const Cell = ({id, winLineId, setWinLineId, setCheckWin, setCheckBadGame, checkBadGame}: ICellProps): ReactElement => {
+const Cell = ({id, winLineId, setWinLineId}: ICellProps): ReactElement => {
     const { game, updateGame, cellsList, updateCellsList } = useContext(GameContext);
     const [cellStyle, setCellStyle] = useState<string>("cell-start");
     const [cellImageSrc, setCellImageSrc] = useState<string>("");

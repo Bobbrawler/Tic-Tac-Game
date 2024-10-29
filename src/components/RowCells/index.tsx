@@ -7,15 +7,12 @@ export interface IColumnCellProps {
     rowCells: string[];
     winLineId: string[];
     setWinLineId: Dispatch<SetStateAction<string[]>>;
-    setCheckWin: Dispatch<SetStateAction<boolean>>;
-    setCheckBadGame: Dispatch<SetStateAction<boolean>>;
-    checkBadGame: boolean;
 }
 
-const RowCells = ({rowCells, winLineId, setWinLineId, setCheckWin, setCheckBadGame, checkBadGame}: IColumnCellProps): ReactElement => (
+const RowCells = ({rowCells, winLineId, setWinLineId}: IColumnCellProps): ReactElement => (
     <div className="row-cell">
         {rowCells.map(cell => (
-            <Cell key={cell} id={cell} winLineId={winLineId} setWinLineId={setWinLineId} setCheckWin={setCheckWin} setCheckBadGame={setCheckBadGame} checkBadGame={checkBadGame}/>
+            <Cell key={cell} id={cell} winLineId={winLineId} setWinLineId={setWinLineId} />
         ))}
 
     </div>

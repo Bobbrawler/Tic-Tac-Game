@@ -1,0 +1,61 @@
+.name-field-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+
+.icon {
+    color: white;
+    font-size: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5vw;
+    height: 6vw;
+    font-family: sans-serif;
+    border-radius: 0.8vw 0 0 0.8vw;
+    transition: 1s;
+}
+
+.icon:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.name-info-container {
+    background-color: white;
+    width: 16vw;
+    height: 6vw;
+    padding-left: 1vw;
+    border-radius: 0 0.8vw 0.8vw 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    transition: 1s;
+}
+
+.name-info-container:hover {
+    background-color: rgba(255, 255, 255, 0.815);
+}
+
+.name-header {
+    font-family: sans-serif;
+}
+
+.name-field {
+    border: none;
+    font-family: sans-serif;
+    font-size: 2vw;
+    font-weight: 800;
+    width: 13vw;
+    outline: none;
+    transition: 1s;
+    border-radius: 0.8vw;
+}
+
+.name-field:focus {
+    border: none;
+}

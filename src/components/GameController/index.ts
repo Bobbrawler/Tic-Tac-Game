@@ -17,6 +17,26 @@ import {
 import { ICheckLine } from "../../interfaces";
 
 export class GameController {
+
+    public static isBadGame = (cellsList: TCells, win: boolean): boolean => {
+        if (win) {
+            return false;
+        }
+        for (let i = 0; i < cellsList.length; i++) {
+            for (let j = 0; j < cellsList[i].length; j++) {
+                if (
+                    cellValuesNoBadGame.some(
+                        (value) => value === cellsList[i][j].value
+                    )
+                ) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    };
+
     public static setFirstRound = (): IRound => {
         return {
             situation: "play",
@@ -26,8 +46,16 @@ export class GameController {
             round: 1,
             win: false,
             winLineId: [],
-            badGame: false,
         };
+    };
+
+    public static setStartPlayersNames = (countPlayers: number): string[] => {
+        let playersNames: string[] = [];
+        for (let i = 0; i < countPlayers; i++ ) {
+            playersNames.push(`Player ${i+1}`);
+
+        }
+        return playersNames;
     };
 
     public static createCellsList = (
@@ -102,12 +130,6 @@ export class GameController {
 
         let checkWin: boolean = currentSituation.situation === "win";
 
-        let checkBadGame: boolean = this.isBadGame(cellsList, checkWin);
-
-        if (checkBadGame) {
-            currentSituation.situation = "badGame";
-        }
-
         let transmissionMove: number = checkWin ? 0 : 1;
 
         let nextPlayerNumber: number =
@@ -122,7 +144,6 @@ export class GameController {
             round: lastRound.round + 1,
             win: checkWin,
             winLineId: currentSituation.winLineId,
-            badGame: checkBadGame,
         };
 
         return newRound;
@@ -194,25 +215,6 @@ export class GameController {
             }
         }
         return { situation: situation, winLineId: [] };
-    };
-
-    private static isBadGame = (cellsList: TCells, win: boolean): boolean => {
-        if (win) {
-            return false;
-        }
-        for (let i = 0; i < cellsList.length; i++) {
-            for (let j = 0; j < cellsList[i].length; j++) {
-                if (
-                    cellValuesNoBadGame.some(
-                        (value) => value === cellsList[i][j].value
-                    )
-                ) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
     };
 
     public static isLastRound = (

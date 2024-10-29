@@ -1,6 +1,6 @@
-import { IMode } from "../../interfaces";
+import { IMode, IPlayer } from "../../interfaces";
 
-export const needLineToWin = 2;
+export const needLineToWin = 3;
 
 export const modeList: IMode[] = [
     {
@@ -13,14 +13,27 @@ export const modeList: IMode[] = [
     },
 ];
 
+export const playersList: IPlayer[] = [
+    {
+        id: "0",
+        icon: "x",
+        color: "rgb(255, 123, 0)",
+    },
+    {
+        id: "1",
+        icon: "○",
+        color: "rgb(51, 179, 214)"
+    },
+]
+
 export const playersNamesList: { [key: string]: string } = {
     "0": "player1",
     "1": "player2",
 };
 
 export const playersIconsList: { [key: string]: string } = {
-    "0": "cross",
-    "1": "circle",
+    "0": "x",
+    "1": "○",
 };
 
 export const imageSrcPlayers: { [key: string]: string } = {
@@ -42,8 +55,8 @@ export const statusListNames: { [key: string]: string} = {
 
 export const cellStyles: {[key: string]: string} = {
     "none": "cell-start",
-    "cross": "cell-clicked",
-    "circle": "cell-clicked",
+    "x": "cell-clicked",
+    "○": "cell-clicked",
     "win-player-1": "cell-win-player-1",
     "win-player-2": "cell-win-player-2",
     "no-win": "cell-clicked"
@@ -51,8 +64,8 @@ export const cellStyles: {[key: string]: string} = {
 
 export const cellImagesSrc: {[key: string]: string} = {
     "none": "",
-    "cross": "assets/images/cross.png",
-    "circle": "assets/images/circle.png",
+    "x": "assets/images/cross.png",
+    "○": "assets/images/circle.png",
     "win-player-1": "assets/images/trophy.png",
     "win-player-2": "assets/images/trophy.png",
     "no-win": ""

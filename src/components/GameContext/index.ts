@@ -1,9 +1,9 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { TGame, TPlayers, TCells} from "../../interfaces";
+import { TGame, TCells} from "../../interfaces";
 
 export interface IGameContext {
   game: TGame;
-  // players: TPlayers;
+  playersNames: string[];
   cellsList: TCells;
   updateGame: Dispatch<SetStateAction<TGame>>;
   updateCellsList: Dispatch<SetStateAction<TCells>>;

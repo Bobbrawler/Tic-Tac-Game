@@ -2,8 +2,6 @@ export type TGame = IRound[];
 
 export type TCells = ICell[][];
 
-export type IPlayer = { [key: number]: string };
-
 export type TPlayers = IPlayer[];
 
 export interface IMode {
@@ -16,6 +14,12 @@ export interface ICell {
     value: string;
 }
 
+export interface IPlayer {
+    id: string;
+    icon: string;
+    color: string;
+}
+
 export interface IRound {
     situation: string;
     situationImageSrc: string;
@@ -24,7 +28,6 @@ export interface IRound {
     round: number;
     win: boolean;
     winLineId: string[];
-    badGame: boolean;
 }
 
 export interface IPossibleLine {

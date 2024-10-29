@@ -25,6 +25,7 @@ export interface IStatusProps {
     setCellsBoardStyle: Dispatch<SetStateAction<string>>;
     setBadGameContainerStyle: Dispatch<SetStateAction<string>>;
     setCheckRestart: Dispatch<SetStateAction<boolean>>;
+    playersNames: string[];
 }
 
 const Status = ({
@@ -41,9 +42,11 @@ const Status = ({
     setCheckBadGame,
     setCellsBoardStyle,
     setBadGameContainerStyle,
-    setCheckRestart
+    setCheckRestart,
+    playersNames
 }: IStatusProps): ReactElement => {
     const { updateCellsList } = useContext(GameContext);
+    const playerId = Number(player[player.length - 1]) - 1;
 
     useEffect(() => {
         if (!checkWin) {
@@ -82,7 +85,7 @@ const Status = ({
 
             <div className="status-info-container">
                 <div className="status-header">STATUS</div>
-                <div className="status-info">{`${info} ${player}`}</div>
+                <div className="status-info">{`${info} ${playersNames[playerId]}`}</div>
             </div>
 
             <div className={restartButtonStyle}>
