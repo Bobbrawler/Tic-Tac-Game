@@ -1,3 +1,8 @@
+:root {
+    --cells-board-padding: 4vw;
+}
+
+
 body {
     background-color: rgb(40, 42, 62);
 }
@@ -9,11 +14,22 @@ body {
 }
 
 
-.main-container {
+.main-container-show {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    opacity: 1;
+    transition: 1s;
+}
+
+.main-container-hidden {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 1s;
 }
 
 .game-logo {
@@ -39,13 +55,50 @@ body {
     align-items: center;
 }
 
-.cells-board {
+.cells-board-show {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     gap: 4vh;
     align-items: center;
-    padding: 4vw 4vw;
+    padding: var(--cells-board-padding) var(--cells-board-padding);
     border-radius: 0.3vw;
     background-color: rgb(57, 59, 87);
+    transition: 0.5s;
 }
+
+.cells-board-hidden {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4vh;
+    align-items: center;
+    padding: var(--cells-board-padding) var(--cells-board-padding);
+    border-radius: 0.3vw;
+    background-color: rgb(57, 59, 87);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.no-display {
+    display: none;
+}
+
+.bad-game-image {
+    width: 7vw;
+}
+
+.bad-game-container-hidden {
+    margin-top: 25vh;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.bad-game-container-show {
+    margin-top: 25vh;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+
+

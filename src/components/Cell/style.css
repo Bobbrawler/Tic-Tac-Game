@@ -1,8 +1,15 @@
+:root {
+    --cell-size: 7vw;
+
+}
+
+
+
 .cell-start {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-radius: 0.3vw;
-    width: 8vw;
-    height: 8vw;
+    width: var(--cell-size);
+    height: var(--cell-size);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,13 +24,14 @@
 .cell-win-player-1 {
     background-color: rgb(246, 134, 30);
     border-radius: 0.3vw;
-    width: 8vw;
-    height: 8vw;
+    width: var(--cell-size);
+    height: var(--cell-size);
     transform: scale(1.2);
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 1s;
+    pointer-events: none;
 }
 
 .cell-win-player-1:hover {
@@ -34,13 +42,14 @@
 .cell-win-player-2 {
     background-color: rgb(51, 179, 214);
     border-radius: 0.3vw;
-    width: 8vw;
-    height: 8vw;
+    width: var(--cell-size);
+    height: var(--cell-size);
     transform: scale(1.2);
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 1s;
+    pointer-events: none;
 }
 
 .cell-win-player-2:hover {
@@ -51,4 +60,21 @@
 .cell-image {
     width: 5vw;
     user-select: none;
+}
+
+.cell-clicked {
+    background-color: white;
+    border-radius: 0.3vw;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+    pointer-events: none;
+}
+
+.other-cell-after-win:hover {
+    cursor: pointer;
+    transform: scale(1.1);
 }

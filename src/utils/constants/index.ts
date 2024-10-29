@@ -1,40 +1,6 @@
 import { IMode } from "../../interfaces";
 
-export const needLineToWin = 3;
-export const rows = 3;
-export const cols = 3;
-
-export interface ICellsList {
-    key: string;
-    value: string;
-}
-
-const cellsList: ICellsList[][] = [];
-
-
-for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
-  const row: ICellsList[] = [];
-  for (let colIndex = 0; colIndex < cols; colIndex++) {
-    if (rowIndex===0) {
-        row.push({key: (String(rowIndex) + String(colIndex)), value: "None"});
-        continue;
-    }
-    row.push({key: String(rowIndex * 10 + colIndex), value: "None"});
-  }
-  cellsList.push(row);
-}
-
-export default cellsList;
-
-export const imageSrcPlayers: { [key: string]: string} = {
-    "0": "/assets/images/circle.png",
-    "1": "/assets/images/cross.png",
-};
-
-export const statusListImageSrc: { [key: string]: string} = {
-    "Play": "/assets/images/clock.png",
-    "Win": "/assets/images/trophy.png"
-};
+export const needLineToWin = 2;
 
 export const modeList: IMode[] = [
     {
@@ -47,14 +13,51 @@ export const modeList: IMode[] = [
     },
 ];
 
-export const playersNamesList: { [key: string]: string} = {
-    "0": "Player1",
-    "1": "Player2"
+export const playersNamesList: { [key: string]: string } = {
+    "0": "player1",
+    "1": "player2",
+};
+
+export const playersIconsList: { [key: string]: string } = {
+    "0": "cross",
+    "1": "circle",
+};
+
+export const imageSrcPlayers: { [key: string]: string } = {
+    "0": "/assets/images/cross.png",
+    "1": "/assets/images/circle.png",
+};
+
+export const statusListImageSrc: { [key: string]: string } = {
+    play: "/assets/images/clock.png",
+    win: "/assets/images/trophy.png",
+    badGame: "/assets/images/casket.png"
+};
+
+export const statusListNames: { [key: string]: string} = {
+    play: "play",
+    win: "win",
+    badGame: "bad game"
 }
 
-export const playersIconsList: { [key: string]: string} = {
-    "0": "Cross",
-    "1": "Circle"
+export const cellStyles: {[key: string]: string} = {
+    "none": "cell-start",
+    "cross": "cell-clicked",
+    "circle": "cell-clicked",
+    "win-player-1": "cell-win-player-1",
+    "win-player-2": "cell-win-player-2",
+    "no-win": "cell-clicked"
 }
 
+export const cellImagesSrc: {[key: string]: string} = {
+    "none": "",
+    "cross": "assets/images/cross.png",
+    "circle": "assets/images/circle.png",
+    "win-player-1": "assets/images/trophy.png",
+    "win-player-2": "assets/images/trophy.png",
+    "no-win": ""
+}
 
+export const cellValuesNoBadGame = [
+    "none", "win-player-1", "win-player-2", "no-win"
+]

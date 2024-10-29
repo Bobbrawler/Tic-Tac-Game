@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'logo-font';
+    src: url('/public/fonts/AbrilFatface-Regular.ttf') format('truetype');
+}
+
+.settings-container-hidden {
+    z-index: -1;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: 1s;
+}   
+
+.settings-container-show {
+    z-index: 2;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    transition: 1s;
+}
+
+.close-settings-button {
+    width: 12vw;
+    height: 9vh;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 0.6vw;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    margin-bottom: 5vh;
+    padding: 2vh 2vw;
+    font-weight: bold;
+    color: rgb(40, 42, 62);
+    font-family: sans-serif;
+    user-select: none;
+    font-size: 2vw;
+
+}
+
+.close-settings-button:hover {
+    cursor: pointer;
+    transform: scale(1.1); 
+}
+
+.settings-header {
+    font-weight: bold;
+    color: white;
+    font-family: 'logo-font', sans-serif;
+    font-size: 3vw;
+    user-select: none;
+    transition: 2s;
+    margin-bottom: 2vh;
+}
+
+.sliders-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5vh;
+}
+
+

@@ -2,53 +2,98 @@ import React, {Dispatch, SetStateAction, ReactElement, useContext, useEffect, us
 import GameContext from "../GameContext";
 import { imageSrcPlayers, playersNamesList } from "../../utils/constants";
 import { GameController } from "../GameController";
-import { TGame, IRound } from "../../interfaces";
-import cellsList from "../../utils/constants";
-import { statusListImageSrc } from "../../utils/constants";
+import { TGame, IRound, ICell, TCells } from "../../interfaces";
+import { cellStyles, cellImagesSrc } from "../../utils/constants";
 import "./style.css";
 
 export interface ICellProps {
     id: string;
     winLineId: string[];
-    setWinLineId: Dispatch<SetStateAction<string[]>>
+    setWinLineId: Dispatch<SetStateAction<string[]>>;
+    setCheckWin: Dispatch<SetStateAction<boolean>>;
+    setCheckBadGame: Dispatch<SetStateAction<boolean>>;
+    checkBadGame: boolean;
 }
 
-const Cell = ({id, winLineId, setWinLineId}: ICellProps): ReactElement => {
-    const { game, updateGame } = useContext(GameContext);
+const Cell = ({id, winLineId, setWinLineId, setCheckWin, setCheckBadGame, checkBadGame}: ICellProps): ReactElement => {
+    const { game, updateGame, cellsList, updateCellsList } = useContext(GameContext);
     const [cellStyle, setCellStyle] = useState<string>("cell-start");
     const [cellImageSrc, setCellImageSrc] = useState<string>("");
     const gameRounds: TGame = [...game];
+    var currentCellsList: TCells= [...cellsList];
     const countPlayers: number = Object.keys(imageSrcPlayers).length;
     const [lastPlayerNumber, setLastPlayerNumber] = useState<string>("");
+    const cellRow = Number(id[0]);
+    const cellCol = Number(id[1]);
+
+    const updateClickedCell = (
+        id: string,
+        cellsList: ICell[][],
+        playerIcon: string
+    ) => {
+
+        const newCellsList = cellsList.map(row => [...row]);
+        newCellsList[cellRow][cellCol].value = playerIcon;
+        updateCellsList(newCellsList);
+        return;
+    };
+
+    const setWinLineInList = (currentCellsList: ICell[][], winLineId: string[]) => {
+       
+            if (!winLineId.some(winId => (winId === id))) {
+                currentCellsList[cellRow][cellCol].value = "no-win";
+                return
+            }
+
+            currentCellsList[cellRow][cellCol].value = `win-player-${lastPlayerNumber}`;
+            return;
+
+    }
 
     const handleClick = () => {
         let lastRound: IRound = GameController.foundLastRound(gameRounds);
+        setCellImageSrc(lastRound.playerIconSrc);
+        let currentPlayerIcon = GameController.foundCurrentPlayerIcon(lastRound.player);
+        currentCellsList = [...cellsList];
+        updateClickedCell(id, currentCellsList, currentPlayerIcon);
+
         let nextRound: IRound = GameController.createNextRound(
-            id,
-            cellsList,
+            currentCellsList,
             lastRound,
             countPlayers
         );
+
         gameRounds.push(nextRound);
         updateGame(gameRounds);
-        setCellImageSrc(nextRound.playerIconSrc);
         setWinLineId(nextRound.winLineId);
         let lastPlayerNum = Number(GameController.getKeyByValue(playersNamesList, lastRound.player)) + 1;
         setLastPlayerNumber(String(lastPlayerNum));
+        
+        console.log(nextRound)
         return;
     };
 
     useEffect(() => {
-
-        if (!winLineId.some(winId => (winId === id))) {
+        currentCellsList = [...cellsList];
+        if ((currentCellsList.length === 0) || (winLineId.length === 0)) {
             return;
         }
-        let cellStyleName = `cell-win-player-${lastPlayerNumber}`; 
-        setCellStyle(cellStyleName);
-        setCellImageSrc(statusListImageSrc["Win"]);
-        return;
+
+        setWinLineInList(currentCellsList, winLineId);
     }, [winLineId])
 
+    useEffect(() => {
+        currentCellsList = [...cellsList];
+
+        if (currentCellsList.length === 0) {
+            return;
+        }
+
+        let cellValue = currentCellsList[cellRow][cellCol].value;
+        setCellStyle(cellStyles[cellValue]);
+        setCellImageSrc(cellImagesSrc[cellValue]);
+        return;
+    }, [cellsList])
 
     return (
         <div className={cellStyle} onClick={handleClick}>

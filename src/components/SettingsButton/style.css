@@ -1,0 +1,15 @@
+.settings-button {
+    position: fixed;
+    top: 5vh;
+    right: 5vw;
+}
+
+.settings-button-image {
+    width: 4vw;
+    transition: 1s;
+}
+
+.settings-button-image:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
